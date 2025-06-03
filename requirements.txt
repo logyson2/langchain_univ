@@ -1,0 +1,4 @@
+unstructured
+tabulate
+langchain
+PyPDF2
