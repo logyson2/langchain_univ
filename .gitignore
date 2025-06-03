@@ -1,0 +1,18 @@
+# data 파일 및 출력물 제외 (원본 PDF, 결과물 등은 Git으로 관리하지 않음)
+data/
+outputs/
+tables/
+
+# 파이썬/윈도우 임시파일
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# 가상환경 폴더
+venv/
+env/
+
+# IDE 세팅
+.vscode/
+.idea/
