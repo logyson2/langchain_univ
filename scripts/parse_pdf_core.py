@@ -6,7 +6,7 @@ from unstructured.partition.pdf import partition_pdf
 from tabulate import tabulate
 
 # ===== 파일 경로(수정!) =====
-PDF_PATH = "data/2026연세수시시.pdf"
+PDF_PATH = "data/2026연세수시.PDF"
 CHUNKS_PATH = "outputs/example_chunks_reviewed.jsonl"
 TABLES_PATH = "outputs/example_tables.jsonl"
 
@@ -186,9 +186,18 @@ def save_jsonl(data, path, what=""):
         for item in data:
             f.write(json.dumps(item, ensure_ascii=False) + "\n")
     print(f"[저장] {what} {len(data)}개 → {path}")
+    
+def test():
+    print("ㅋㅋㅋ")
 
 # ====== MAIN ======
-def main():
+def start():
+    print("프로그램이 시작되었습니다.", flush=True)
+    try:
+        reader = PdfReader(PDF_PATH)
+        print(f"페이지 수: {len(reader.pages)}", flush=True)
+    except Exception as e:
+        print(f"PDF 에러: {e}")
     print(f"========== PDF 전처리 파이프라인 시작 ==========\nPDF: {PDF_PATH}\n")
     toc_idx, toc_text = get_toc_page(PDF_PATH)
     toc_lines = parse_toc_lines(toc_text)
@@ -200,6 +209,3 @@ def main():
     save_jsonl(chunks, CHUNKS_PATH, "청크")
     save_jsonl(tables, TABLES_PATH, "표")
     print("\n========== 완료 ==========")
-
-if __name__ == "__main__":
-    main()
